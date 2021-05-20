@@ -6,5 +6,5 @@ Draft Docs
 
 setup
 python -m venv env 			// you can use any name to replace "env"
-
+cd ImgResize            // brings you to the app directory
 pip install -r requirements.txt 	// installs django and other libraries used (to be changed when I actually use other libraries)
