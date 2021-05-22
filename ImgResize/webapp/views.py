@@ -12,7 +12,7 @@ def index (request):
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('success')
+            return redirect('index')
     else:
         form = ImageForm()
         return render(request, 'webapp/index.html', {'form': form})

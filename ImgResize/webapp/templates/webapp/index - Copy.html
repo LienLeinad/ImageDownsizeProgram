@@ -7,15 +7,9 @@
 </head>
 <body>
     <form method = "post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.img }}
-        <label for="resolution">Select a resolution: </label>
-        <select id="dimensions" name="dimensions">
-          <option value="720">720p</option>
-          <option value="480">480p</option>
-          <option value="320">320p</option>
-          <option value="240">240p</option>
-        </select>
+        <!-- {% csrf_token %}
+        {{ form.img }} -->
+        <input type="file" name="img" accept="image/*" required="" id="id_img">
         </br>
         </br>
         <button type = "button" onclick ="process()">Upload</button>
@@ -43,18 +37,17 @@
             document.querySelector("#input").src = event.target.result;
             imgElement.onload = function(e){
                 const canvas = document.createElement("canvas");
-                
-                // resizing to 720p
-                const MAX_WIDTH = document.querySelector("#dimensions").value;
+                const MAX_WIDTH = 10000;
+
                 const scaleSize = MAX_WIDTH / e.target.width;
                 canvas.width = MAX_WIDTH;
                 canvas.height = e.target.height * scaleSize;
-                //output 720p image
+
                 const ctx = canvas.getContext('2d');
                 ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height);
                 const srcEncoded = ctx.canvas.toDataURL(e.target, "image/png");
-                document.querySelector("#output").src = srcEncoded;
 
+                document.querySelector("#output").src = srcEncoded;
             };
         }
         
