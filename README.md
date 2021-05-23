@@ -7,13 +7,15 @@ The App will resize the image by creating a canvas element for each smaller imag
 Some improvements to do:
 
 1) dynamically create number of images you can create given the file resolution (i.e. if given a 1440p, be able to create a 1080p resolution image)
-2)Actually upload the image files to the backend server to be stored in the database
-3)find a way to not have to copy paste the onLoad function responsible for generating the smaller images
+2) Actually upload the image files to the backend server to be stored in the database
+3) find a way to not have to copy paste the onLoad function responsible for generating the smaller images
 
 
 
 setup
+
 Make sure Python 3.7.9 is installed, if not please download the correct version!
+
 python -m venv env // you can use any name to replace "env"
 
 cd ImgResize // brings you to the app directory
@@ -29,5 +31,7 @@ python manage.py runserver
 How to use:
 
 Go to localhost http://localhost:8000/
+
 upload an image, a sample 1920 * 1080 image is supplied in the root directory for convenience, but it can work with any image
+
 click submit
