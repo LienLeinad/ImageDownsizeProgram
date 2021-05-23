@@ -25,7 +25,7 @@
         <img id = "output2"/>
     </div>
     <div>
-        <h3 id = "h3c" style = "display:none;">320p</h3><br>
+        <h3 id = "h3c" style = "display:none;">360p</h3><br>
         <img id = "output3"/>
     </div>
 
@@ -55,7 +55,7 @@
                 const canvas = document.createElement("canvas");
                 
                 // resizing to 720p
-                const MAX_WIDTH = 720;
+                const MAX_WIDTH = 1280;
                 const scaleSize = MAX_WIDTH / e.target.width;
                 canvas.width = MAX_WIDTH;
                 canvas.height = e.target.height * scaleSize;
@@ -66,14 +66,13 @@
                 document.querySelector("#output").src = srcEncoded;
                 document.getElementById("h3a").style.display = "inline";
                 console.log(srcEncoded);
-                document.getElementById('id_sImg').value = srcEncoded;
             };
             imgElement2.onload = function(e){
                 
                 const canvas = document.createElement("canvas");
                 
                 // resizing to 480p
-                const MAX_WIDTH = 480;
+                const MAX_WIDTH = 854;
                 const scaleSize = MAX_WIDTH / e.target.width;
                 canvas.width = MAX_WIDTH;
                 canvas.height = e.target.height * scaleSize;
@@ -91,7 +90,7 @@
                 const canvas = document.createElement("canvas");
                 
                 // resizing to 320p
-                const MAX_WIDTH = 320;
+                const MAX_WIDTH = 640;
                 const scaleSize = MAX_WIDTH / e.target.width;
                 canvas.width = MAX_WIDTH;
                 canvas.height = e.target.height * scaleSize;
