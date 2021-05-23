@@ -18,7 +18,7 @@
         </select>
         </br>
         </br>
-        <button type = "button" onclick ="process()">Upload</button>
+        <button type = "submit" onclick ="process()">Upload</button>
     </form>
     <div>
         <img id = "input"/>
@@ -54,6 +54,7 @@
                 ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height);
                 const srcEncoded = ctx.canvas.toDataURL(e.target, "image/png");
                 document.querySelector("#output").src = srcEncoded;
+
 
             };
         }
