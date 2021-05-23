@@ -10,7 +10,7 @@ output image follows standard resolution formats as follows
 
 
 The App will resize the image by creating a canvas element for each smaller image copy. The canvas element will have 720p, 480p, and 320p as the smaller resolutions. 
-The image is then redrawn with the max_width being set to the resolution they're set to (i.e. 720 px, 480px, 320px) and are then displayed to the webpage. 
+The image is then redrawn with the max_width being set to the resolution they're set to (i.e. 1280 px, 720px, 480px) and are then displayed to the webpage. 
 The image is actually a file that can be stored in the database if properly coded to send DataURL objects to the backend, and not a compressed rendered image.
 If the image is actually downloaded from the webpage it'll be the correct dimensions dictated by the canvas element.
 
@@ -33,5 +33,20 @@ Draft Docs
 setup
 
 python -m venv env 			// you can use any name to replace "env"
+
 cd ImgResize            // brings you to the app directory
+
 pip install -r requirements.txt 	// installs django and other libraries used (to be changed when I actually use other libraries)
+
+python manage.py makemigrations //sets up django database, database isn't actually used, but it's left there to make it easier to implement saving image files in the server in future updates
+
+python manage.py migrate  // commits the database
+
+python manage.py runserver
+
+How to use:
+
+1) Go to localhost http://localhost:8000/
+2) upload an image, a sample 1920 * 1080 image is supplied in the root directory for convenience, but it can work with any image
+3) click submit
+
