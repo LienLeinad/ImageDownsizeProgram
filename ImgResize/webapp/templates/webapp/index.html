@@ -9,24 +9,27 @@
     <form method = "post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.img }}
-        <label for="resolution">Select a resolution: </label>
-        <select id="dimensions" name="dimensions">
-          <option value="720">720p</option>
-          <option value="480">480p</option>
-          <option value="320">320p</option>
-          <option value="240">240p</option>
-        </select>
         </br>
         </br>
-        <button type = "submit" onclick ="process()">Upload</button>
+        <button type = "button" onclick ="process()">Upload</button>
     </form>
     <div>
         <img id = "input"/>
     </div>
-
     <div>
+        <h3 id = "h3a" style = "display:none;">720p</h3><br>
         <img id = "output"/>
     </div>
+    <div >
+        <h3 id = "h3b" style = "display:none;">480p</h3><br>
+        <img id = "output2"/>
+    </div>
+    <div>
+        <h3 id = "h3c" style = "display:none;">320p</h3><br>
+        <img id = "output3"/>
+    </div>
+
+    
     <script>
         function process(){
         // console.log("I'm connected");
@@ -39,13 +42,19 @@
     
         reader.onload = function(event){
             const imgElement = document.createElement("img");
+            const imgElement2 = document.createElement("img");
+            const imgElement3 = document.createElement("img");
+
             imgElement.src = event.target.result;
+            imgElement2.src = event.target.result;
+            imgElement3.src = event.target.result;
+            
             document.querySelector("#input").src = event.target.result;
             imgElement.onload = function(e){
                 const canvas = document.createElement("canvas");
                 
                 // resizing to 720p
-                const MAX_WIDTH = document.querySelector("#dimensions").value;
+                const MAX_WIDTH = 720;
                 const scaleSize = MAX_WIDTH / e.target.width;
                 canvas.width = MAX_WIDTH;
                 canvas.height = e.target.height * scaleSize;
@@ -54,7 +63,40 @@
                 ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height);
                 const srcEncoded = ctx.canvas.toDataURL(e.target, "image/png");
                 document.querySelector("#output").src = srcEncoded;
+                document.getElementById("h3a").style.display = "inline";
+            };
+            imgElement2.onload = function(e){
+                const canvas = document.createElement("canvas");
+                
+                // resizing to 480p
+                const MAX_WIDTH = 480;
+                const scaleSize = MAX_WIDTH / e.target.width;
+                canvas.width = MAX_WIDTH;
+                canvas.height = e.target.height * scaleSize;
+                //output 480p image
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height);
+                const srcEncoded = ctx.canvas.toDataURL(e.target, "image/png");
+                document.querySelector("#output2").src = srcEncoded;
 
+                document.getElementById("h3b").style.display = "inline";
+
+            };
+            imgElement3.onload = function(e){
+                const canvas = document.createElement("canvas");
+                
+                // resizing to 320p
+                const MAX_WIDTH = 320;
+                const scaleSize = MAX_WIDTH / e.target.width;
+                canvas.width = MAX_WIDTH;
+                canvas.height = e.target.height * scaleSize;
+                //output 320p image
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height);
+                const srcEncoded = ctx.canvas.toDataURL(e.target, "image/png");
+                document.querySelector("#output3").src = srcEncoded;
+                
+                document.getElementById("h3c").style.display = "inline";
 
             };
         }
