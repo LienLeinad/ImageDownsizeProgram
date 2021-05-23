@@ -6,7 +6,7 @@
     <title>Image Upload</title>
 </head>
 <body>
-    <form method = "post" enctype="multipart/form-data">
+    <form id = "id_form" method = "post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.img }}
         </br>
@@ -29,13 +29,13 @@
         <img id = "output3"/>
     </div>
 
-    
+    <!-- https://www.youtube.com/watch?v=bXf_UdyDzSA&ab_channel=CodingShikshaCodingShiksha -->
+    <!-- code for this script was based off this video, updated to work with multiple image files -->
     <script>
         function process(){
-        // console.log("I'm connected");
         const file = document.querySelector("#id_img").files[0];
         if(!file) return;
-    
+        
         const reader = new FileReader();
     
         reader.readAsDataURL(file);
@@ -50,6 +50,7 @@
             imgElement3.src = event.target.result;
             
             document.querySelector("#input").src = event.target.result;
+
             imgElement.onload = function(e){
                 const canvas = document.createElement("canvas");
                 
@@ -64,8 +65,11 @@
                 const srcEncoded = ctx.canvas.toDataURL(e.target, "image/png");
                 document.querySelector("#output").src = srcEncoded;
                 document.getElementById("h3a").style.display = "inline";
+                console.log(srcEncoded);
+                document.getElementById('id_sImg').value = srcEncoded;
             };
             imgElement2.onload = function(e){
+                
                 const canvas = document.createElement("canvas");
                 
                 // resizing to 480p
@@ -83,6 +87,7 @@
 
             };
             imgElement3.onload = function(e){
+                
                 const canvas = document.createElement("canvas");
                 
                 // resizing to 320p
